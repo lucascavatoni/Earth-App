@@ -14,7 +14,7 @@ The app includes
 - Current moon position (including distance from earth)
 - The moon casts light on earth
 - Current planet inclination and rotation (day/night)
-- Current clouds (EUMETSAT data available at : https://navigator.eumetsat.int/product/EO:EUM:DAT:0330?query=Geostationary%20Ring%20IR10.8%20%CE%BCm%20Image%20-%20Multimission&s=advanced)
+- Current IR clouds covering the entierety of earth, with custom post-processing to make them look more like visible imagery (EUMETSAT data available at : https://navigator.eumetsat.int/product/EO:EUM:DAT:0330?query=Geostationary%20Ring%20IR10.8%20%CE%BCm%20Image%20-%20Multimission&s=advanced)
 - Current ongoing auroras (NOAA data available at : https://www.swpc.noaa.gov/products/aurora-30-minute-forecast)
 
 ![](images/SA.png)
