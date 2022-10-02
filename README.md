@@ -23,7 +23,7 @@ The app includes
 
 Weak Aurora :
 
-![](images/WeakAurora.PNG)
+![](images/weakAurora.PNG)
 
 Strong Aurora :
 
