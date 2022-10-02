@@ -9,7 +9,7 @@ import SceneKit
 
 class SurfaceNode: SCNNode {
     
-    init(key: String) {
+    override init() {
         super.init()
         
         //Creating sphere
@@ -20,10 +20,10 @@ class SurfaceNode: SCNNode {
         //Geometry is this sphere
         self.geometry = sphere
 
+        let diffuseTexture: UIImage;
         
-        switch key {
-        //Nasa Blue Marble Next Generation Monthly
-        case "bluemarble":
+        let monthly = true
+        if monthly {
             //Calendar
             var calendar = Calendar.current
             calendar.timeZone = TimeZone(identifier: "UTC")!
@@ -32,217 +32,153 @@ class SurfaceNode: SCNNode {
             switch m {
             case 1:
                 //January
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200401.3x21600x10800")
+                diffuseTexture = UIImage(named: "world.topo.200401.3x21600x10800")!
                 break
             case 2:
                 //February
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200402.3x21600x10800")
+                diffuseTexture = UIImage(named: "world.topo.200402.3x21600x10800")!
                 break
             case 3:
                 //March
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200403.3x21600x10800")
+                diffuseTexture = UIImage(named: "world.topo.200403.3x21600x10800")!
                 break
             case 4:
                 //April
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200404.3x21600x10800")
+                diffuseTexture = UIImage(named: "world.topo.200404.3x21600x10800")!
                 break
             case 5:
                 //May
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200405.3x21600x10800")
+                diffuseTexture = UIImage(named: "world.topo.200405.3x21600x10800")!
                 break
             case 6:
                 //June
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200406.3x21600x10800")
+                diffuseTexture = UIImage(named: "world.topo.200406.3x21600x10800")!
                 break
             case 7:
                 //July
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200407.3x21600x10800")
+                diffuseTexture = UIImage(named: "world.topo.200407.3x21600x10800")!
                 break
             case 8:
                 //August
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200408.3x21600x10800")
+                diffuseTexture = UIImage(named: "world.topo.200408.3x21600x10800")!
                 break
             case 9:
                 //September
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200409.3x21600x10800")
+                diffuseTexture = UIImage(named: "world.topo.200409.3x21600x10800")!
                 break
             case 10:
                 //October
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200410.3x21600x10800")
+                diffuseTexture = UIImage(named: "world.topo.200410.3x21600x10800")!
                 break
             case 11:
                 //November
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200411.3x21600x10800")
+                diffuseTexture = UIImage(named: "world.topo.200411.3x21600x10800")!
                 break
             case 12:
                 //December
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200412.3x21600x10800")
+                diffuseTexture = UIImage(named: "world.topo.200412.3x21600x10800")!
                 break
             default:
                 //Default case: June
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200406.3x21600x10800")
+                diffuseTexture = UIImage(named: "world.topo.200409.3x21600x10800")!
                 break
             }
-            
-        break
-        //Earth Visible Image
-        case "true-color":
-            
-            //First Offline images
-            
-            //Calendar
-            var calendar = Calendar.current
-            calendar.timeZone = TimeZone(identifier: "UTC")!
-            //month
-            let m:Int = Int(calendar.component(.month, from: Date()))
-            switch m {
-            case 1:
-                //January
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200401.3x21600x10800")
-                break
-            case 2:
-                //February
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200402.3x21600x10800")
-                break
-            case 3:
-                //March
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200403.3x21600x10800")
-                break
-            case 4:
-                //April
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200404.3x21600x10800")
-                break
-            case 5:
-                //May
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200405.3x21600x10800")
-                break
-            case 6:
-                //June
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200406.3x21600x10800")
-                break
-            case 7:
-                //July
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200407.3x21600x10800")
-                break
-            case 8:
-                //August
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200408.3x21600x10800")
-                break
-            case 9:
-                //September
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200409.3x21600x10800")
-                break
-            case 10:
-                //October
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200410.3x21600x10800")
-                break
-            case 11:
-                //November
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200411.3x21600x10800")
-                break
-            case 12:
-                //December
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200412.3x21600x10800")
-                break
-            default:
-                //Default case: June
-                self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200406.3x21600x10800")
-                break
-            }
-            
-            
-            //Nasa true color text file URL
-            if let textUrl = URL(string: "ftp://ftp.sos.noaa.gov/sosrt/rt/noaa/true_color/labels/labels.txt") {
-                do{
-                    //read all the lines of the text file
-                    let contents = try String(contentsOf: textUrl)
-                    //split the lines into a list, separated by newlines
-                    let lines = contents.components(separatedBy: .newlines)
-                    //Take last full line, which is one before the last line (because the very last line is blank)
-                    let line = lines[lines.count-2]
-                    //Split this line into date and time separated by space
-                    let lineElements = line.components(separatedBy: .whitespaces)
-                    //Month element
-                    var month = lineElements[0]
-                    //Day element
-                    var day = lineElements[1]
-                    //Year element
-                    let year = lineElements[2]
-                    //Getting rid of the coma at the end of the day (Apr 12, 2021)
-                    day = day[0 ..< 2]
-                    //Converting month from text format to number format
-                    month = monthConvertStrToNumber(Month: month)
-                    
-
-                
-                    let url = URL(string: "ftp://ftp.sos.noaa.gov/sosrt/rt/noaa/true_color/4096/TRUE.daily."+year+month+day+".color.png")
-                    
-                    let task = URLSession.shared.dataTask(with: url!) { data, response, error in
-                        guard let data = data, error == nil else { return }
-
-                        DispatchQueue.main.async() { [self] in    // execute on main thread
-                            
-                            //Because original image has an underlay of blue marble old generation
-                            //So in color, so we must turn the image in black and white
-                            let Image = UIImage(data: data)!
-
-                            self.geometry?.firstMaterial?.diffuse.contents = Image
-                            
-                            
-                        }
-                    }
-                    
-                    task.resume()
-                    
-            } catch{
-                    //contents could not be loaded
-                }
-            }
-        break
-        default:
-            //Default case: June
-            self.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "world.topo.200406.3x21600x10800")
-            break
+        } else {
+            diffuseTexture = UIImage(named: "earth_truecolor_texture_map_12k_by_fargetanik_ddjmpsj")!
         }
-        
-        
-        //Water
-        self.geometry?.firstMaterial?.specular.contents = UIImage(named: "specular")
-        
+                
         //Night
-        let emissionTexture = UIImage(named: "lights2016")!
+        let emissionTexture = UIImage(named: "lights")!
+        
+        //specular
+        let specularTexture = UIImage(named: "specular")!
         
         //emission
         let emission = SCNMaterialProperty(contents: emissionTexture)
         
+        //diffuse
+        let diffuse = SCNMaterialProperty(contents: diffuseTexture)
+        
+        //specular
+        let specular = SCNMaterialProperty(contents: specularTexture)
+        
         //setting the value
         self.geometry?.firstMaterial?.setValue(emission, forKey: "emissionTexture")
         
-        //Shader to hide night lights at day
-        let shaderModifier =
+        self.geometry?.firstMaterial?.setValue(diffuse, forKey: "diffuseTexture")
+        
+        self.geometry?.firstMaterial?.setValue(specular, forKey: "specularTexture")
+        
+        let ShaderModifier =
+        
         """
+        uniform sampler2D diffuseTexture;
+                
+        uniform vec3 direction = _light.direction;
+        
+        uniform float scalar = dot(direction,_surface.normal)*_light.intensity.rgb;
+        
+        vec3 light = _lightingContribution.diffuse;
+        //float lum = 0.2126*light.r + 0.7152*light.g + 0.0722*light.b;
+        float sunLum = light.r;
+        float moonLum = light.g;
+        vec4 ground = texture2D(diffuseTexture, _surface.diffuseTexcoord);
+
+        //ground.r = powr(ground.r,0.7);
+        //ground.g = powr(ground.g,1.0);
+        //ground.b = powr(ground.b,1.4);
+        
+        float ambient = 0.002;
+        
+        //epsilon = 0.01;
+        
+        if ((ground.r - ground.g > 0.03) || (ground.g - ground.b > 0.03)){
+            ground.g = 0.7*ground.g;
+            ground.b = 0.2*ground.b;
+        } else {
+            ground.b = 0.8 * ground.b;
+        }
+        
+        vec4 diffuse = ground * max(max(sunLum,moonLum),ambient);
+        
+        _output.color = diffuse;
+        
+        uniform sampler2D specularTexture;
+        
+        float factor = ( _surface.normal.x * _surface.normal.x + _surface.normal.y * _surface.normal.y );
+        
+        vec3 specular = _lightingContribution.specular;
+        float lumSpecular = 0.2126*specular.r + 0.7152*specular.g + 0.0722*specular.b;
+        vec4 specularColor = texture2D(specularTexture, _surface.specularTexcoord) * lumSpecular * (1.0 + 100 * powr(factor,4));
+        specularColor = vec4(specularColor.r,specularColor.g*(1.0-0.6*factor),specularColor.b*0.7*(1.0-1.0*factor),1.0);
+        _output.color += specularColor;
+        
         uniform sampler2D emissionTexture;
 
-        vec3 light = _lightingContribution.diffuse;
-        float lum = max(0.0, 1 - (0.2126*light.r + 0.7152*light.g + 0.0722*light.b));
-        vec4 emission = texture2D(emissionTexture, _surface.diffuseTexcoord) * lum;
-                float t = 0.1; // no emission will show above this threshold
-                _output.color = vec4(
-                    light.r > t ? _output.color.r : (light.r/t * _output.color.r + (1-light.r/t) * (_output.color.r + emission.r)),
-                    light.g > t ? _output.color.g : (light.g/t * _output.color.g + (1-light.g/t) * (_output.color.g + emission.g)),
-                    light.b > t ? _output.color.b : (light.b/t * _output.color.b + (1-light.b/t) * (_output.color.b + emission.b)),1);
+        float lum = max(0.0, 1.0 - 100.0 * sunLum);
+        vec4 emission = texture2D(emissionTexture, _surface.emissionTexcoord) * lum;
+        
+        //vec4 lights = vec4(emission.r*emission.r,emission.r*0.2*(1.0-0.5*factor),0.1*emission.r*(1.0-emission.r)*(1.0-factor),1.0);
+        //vec4 lights = vec4(emission.r,0.1*log(10*emission.r+1),0.01*log(100*emission.r+1),1.0);
+        
+        factor = factor*factor;
+        
+        //HP sodium sRGB : 255, 183, 76
+        //in Linear sRGB : 1, 0.47353149614801, 0.0722718506823175 -> 1, 0.47, 0.072
+        
+        //HPS is 2200K -> https://andi-siess.de/rgb-to-color-temperature/ -> 255, 147, 44 -> 1, 0.291770649817536, 0.0251868596273616
+        // 1, 0.29, 0.026 -> 255, 147, 44
+        // other source https://academo.org/demos/colour-temperature-relationship/ : 255, 146, 39 -> 1, 0.287440837726917, 0.0202885630566524
+        
+        
+        
+        vec4 lights = vec4(emission.r,((0.474-0.292)*emission.g+0.292)*emission.g*(1-0.5*factor),((0.072-0.025)*emission.b+0.025)*emission.b*(1-factor),1.0)*0.5;
+        
+        _output.color += lights;
+
         """
         
-        self.geometry?.firstMaterial?.shaderModifiers = [.fragment: shaderModifier]
-        
-        //Water shininess, higher value = smaller reflection point
-        self.geometry?.firstMaterial?.shininess = 0.5
-        
-        //Water specular intensity, between 0 and 1
-        self.geometry?.firstMaterial?.specular.intensity = 0.5
-        
-        self.castsShadow = false
-        
+        self.geometry?.firstMaterial?.shaderModifiers = [.fragment: ShaderModifier]
         
     }
     

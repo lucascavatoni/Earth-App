@@ -1,23 +1,21 @@
 //
-//  HaloNode.swift
+//  AirGlowNode.swift
 //  Earth App
 //
-//  Created by Lucas Cavatoni on 16/07/2021.
+//  Created by Lucas Cavatoni on 21/02/2022.
 //
 
 import SceneKit
+import Foundation
 
-class AtmosNode: SCNNode {
+class AirGlowNode: SCNNode {
     override init() {
         super.init()
     
-        //64 km
-        let sphere = SCNSphere(radius: 1.010)
+        //96 km
+        let sphere = SCNSphere(radius: 1.015)
         self.geometry = sphere
         sphere.segmentCount = 48
-        
-        //self.geometry?.firstMaterial?.isDoubleSided = true
-        //self.geometry?.firstMaterial?.transparencyMode = .dualLayer
         
         let ShaderModifier =
         
@@ -40,22 +38,17 @@ class AtmosNode: SCNNode {
         vec3 light = _lightingContribution.diffuse;
 
         float sunLum = sqrt(light.r);
-        float moonLum = sqrt(light.g*33.)/33.;
-                
-        float lum = max(sunLum,moonLum);
+        float lum = max(0.0, 1.0 - 1.0 * sunLum);
 
         float factor = ( _surface.normal.x * _surface.normal.x + _surface.normal.y * _surface.normal.y );
         
-        //float factor4 = powr(factor,32);
+        factor = powr(factor,64.);
 
-        float red = srgbToLinear( 0.1 * (1.0 + 2.0 * factor ) ) ;
-        float green = srgbToLinear( 0.2 * (1.0 + 1.0 * factor ) ) ;
-        float blue = srgbToLinear( 0.3 * (1.0 + 0.5 * factor ) ) ;
+        float red = srgbToLinear(1.) ;
+        float green = srgbToLinear(1.) ;
+        float blue = 0.;
 
-        float nadirTransparency = 0.4 ;
-        float edgeTransparency = 0.9 ;
-
-        _output.color = vec4(red,green,blue,1.0) * lum * (nadirTransparency + (edgeTransparency - nadirTransparency) * (factor));
+        _output.color = vec4(red,green,blue,1.0) * lum * factor * 0.1;
 
         """
 

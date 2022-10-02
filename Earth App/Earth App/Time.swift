@@ -81,6 +81,8 @@ class Time{
         //Computing sun's DECLINATION
         delta = Float(asin(sin(epsilon*toRadians)*sin(lambda*toRadians)))
         
+        //print(delta*180.0/Float.pi)
+        //print(longitude)
         //moon
 
         //Formulas from http://www.stargazing.net/kepler/moon2.html

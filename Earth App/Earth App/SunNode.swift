@@ -12,7 +12,7 @@ class SunNode: SCNNode {
         super.init()
         
         //Geometry is a plane (sprite)
-        let size: CGFloat = 200
+        let size: CGFloat = 10
         self.geometry = SCNPlane(width: size, height: size)
         
         let sunTexture = UIImage(named: "sun")
@@ -28,8 +28,6 @@ class SunNode: SCNNode {
         
         //Telling scenekit to take the image RGB colors as transparency mask
         self.geometry?.firstMaterial?.transparencyMode = .rgbZero
-        
-        self.castsShadow = false
         
         self.geometry?.firstMaterial?.lightingModel = SCNMaterial.LightingModel.constant
         

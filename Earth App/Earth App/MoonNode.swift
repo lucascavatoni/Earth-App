@@ -14,29 +14,35 @@ class MoonNode: SCNNode {
         
         //Creating sphere
         //Moon radius is 1737 km = 0.27264165751 Earth Radii so ~0.273
-        let sphere = SCNSphere(radius: 0.273)
+        let sphere = SCNSphere(radius: 0.3)
         //Number of segments
-        sphere.segmentCount = 10
+        sphere.segmentCount = 8
         //Geometry is this sphere
         self.geometry = sphere
         
-        //Color of the moon
-        self.geometry?.firstMaterial?.diffuse.contents = UIColor.white
-        self.light = SCNLight()
+        let diffuseTexture = UIImage(named: "moon")!
         
-        //Moonlight temperature
-        self.light?.temperature = 4100
-        self.light?.type = .directional
+        let diffuse = SCNMaterialProperty(contents: diffuseTexture)
         
-        self.castsShadow = false
+        self.geometry?.firstMaterial?.setValue(diffuse, forKey: "diffuseTexture")
         
-//        let moonShadow = SCNNode()
-//        let shadowSphere = SCNSphere(radius: 0.03)
-//        shadowSphere.segmentCount = 10
-//        moonShadow.geometry = shadowSphere
-//        moonShadow.castsShadow = true
-//
-//        self.addChildNode(moonShadow)
+        let ShaderModifier =
+
+        """
+        uniform sampler2D diffuseTexture;
+
+        vec3 light = _lightingContribution.diffuse;
+        
+        float sunLum = light.r;
+        
+        vec4 diffuse = texture2D(diffuseTexture, _surface.diffuseTexcoord) * min(1.0,sunLum) ;
+
+        _output.color = diffuse;
+
+        """
+
+
+        self.geometry?.firstMaterial?.shaderModifiers = [.fragment: ShaderModifier]
         
     }
     

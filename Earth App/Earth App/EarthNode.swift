@@ -5,7 +5,6 @@
 //  Created by Lucas Cavatoni on 21/11/2020.
 //
 
-
 import SceneKit
 
 class EarthNode: SCNNode {
@@ -13,26 +12,25 @@ class EarthNode: SCNNode {
         super.init()
         
         //creating the surface node
-        
-        
-        let surfaceNode = SurfaceNode(key: "bluemarble")
+        let surfaceNode = SurfaceNode()
         self.addChildNode(surfaceNode)
         
-        
-        
         //creating the clouds node
-        
-//        let cloudsNodelw = CloudsNode(key: "vis")
-//        self.addChildNode(cloudsNodelw)
-        
-        let cloudsNode = CloudsNode(key: "lw")
+        let cloudsNode = CloudsNode(key: "eumetsat")
         self.addChildNode(cloudsNode)
+        
+        //Creating atmosphere
+        let atmosphere = AtmosNode()
+        self.addChildNode(atmosphere)
+        
+        //Adding AirGlow
+        //let airGlow = AirGlowNode()
+        //self.addChildNode(airGlow)
 
-        
-        //creating the atmosphere node
-        
-        let atmosNode = AtmosNode()
-        self.addChildNode(atmosNode)
+        //Adding Aurora Borealis
+        let auroraBorealis = AuroraNode()
+        self.addChildNode(auroraBorealis)
+
 
     }
 
