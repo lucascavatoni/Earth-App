@@ -4,6 +4,8 @@
 
 WIP iOS application showing the Earth right now with clouds and other features.
 
+Tested on iPhone 6S.
+
 The goal is to have a representation of the earth as visually accurate as possible, and then adding UI features and possibly weather forecast...
 
 The app features :
