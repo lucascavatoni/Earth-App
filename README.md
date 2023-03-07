@@ -26,4 +26,4 @@ The app features :
 - Custom zoom and pan camera controls
 - Ability to tap on the sun or the moon to go towards it
 
-![image](https://static01.bbi.io/2Wt9Tk.gif)
+![image](https://imgur.com/a/qszN8Wv)
