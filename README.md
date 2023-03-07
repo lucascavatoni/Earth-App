@@ -21,6 +21,7 @@ The app features :
 - 3D cloud effect
 - Current ongoing auroras (NOAA, data available at : https://www.swpc.noaa.gov/products/aurora-30-minute-forecast)
 - Current sun surface (i.e. sunspots) (NASA, data available at : https://www.nasa.gov/mission_pages/sdo/the-sun-now/index.html)
+- Sun glare effect
 - Current stars and milkyway
 - Custom zoom and pan camera controls
 - Ability to tap on the sun or the moon to go towards it
