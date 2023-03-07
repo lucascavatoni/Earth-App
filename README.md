@@ -1,7 +1,5 @@
 # Earth-App
 
-![](images/NA.PNG)
-
 WIP iOS application showing the Earth right now with clouds and other features.
 
 Tested on iPhone 6S.
