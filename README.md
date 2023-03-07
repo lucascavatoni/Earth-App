@@ -25,3 +25,5 @@ The app features :
 - Current stars and milkyway
 - Custom zoom and pan camera controls
 - Ability to tap on the sun or the moon to go towards it
+
+!(image)[https://imgur.com/gallery/l7Sw9Oh]
