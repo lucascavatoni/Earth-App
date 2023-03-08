@@ -1,12 +1,12 @@
 # Earth-App
 
-WIP iOS application showing the Earth right now with clouds and other features.
+## WIP iOS application showing the Earth right now with clouds and other features.
 
 Tested on iPhone SE 3.
 
 The goal is to have a representation of the earth as visually accurate as possible, and then adding UI features and possibly weather forecast...
 
-The app features :
+### The app features :
 
 - Monthly earth textures (i.e. snow in Asia/America/Europe in Winter)
 - Earth normals
