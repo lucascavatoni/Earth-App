@@ -8,11 +8,12 @@ The goal is to have a representation of the earth as visually accurate as possib
 
 The app features :
 
-- Monthly earth textures
+- Monthly earth textures (i.e. snow in Asia/America/Europe in Winter)
 - Earth normals
 - Night lights (Colored from black and white images from black marble)
-- Atmosphere shader
+- Atmosphere shader 
 - Terminator shader
+- Earth surface shader
 - Current moon position (including distance from earth)
 - Moon normals
 - The moon casts light on earth and vice-versa
@@ -26,4 +27,12 @@ The app features :
 - Custom zoom and pan camera controls
 - Ability to tap on the sun or the moon to go towards it
 
-![image](xxxxx)
+![image](https://i.imgur.com/JbweKXu.png)
+
+![image](https://i.imgur.com/RKSQ6lP.png)
+
+![image](https://i.imgur.com/zbpHLbL.png)
+
+![image](https://i.imgur.com/VHtroDt.png)
+
+![image](https://i.imgur.com/YQ2fWhw.png)
