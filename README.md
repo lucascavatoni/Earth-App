@@ -1,4 +1,4 @@
-# Earth-App
+# Blue Marble iOS App
 
 ## WIP iOS application showing the Earth right now with clouds and other features.
 
