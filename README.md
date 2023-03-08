@@ -1,8 +1,8 @@
 # Blue Marble iOS App
 
 <p float="right">
-  <img src="https://i.imgur.com/vtwNU6l.png" width=30% height=30%>
   WIP iOS application showing the Earth right now with clouds and other features. The goal is to have a representation of the earth as visually accurate as possible, and then adding UI features and possibly weather forecast...
+  <img src="https://i.imgur.com/vtwNU6l.png" width=30% height=30%>
 </p>
 
 
