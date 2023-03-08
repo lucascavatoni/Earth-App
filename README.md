@@ -8,7 +8,6 @@ WIP iOS application showing the Earth right now with clouds and other features. 
 
 ### Internet based features
 - Current IR clouds covering the entierety of earth, with post-processing to make them look more like visible imagery (EUMETSAT, data available at : https://navigator.eumetsat.int/product/EO:EUM:DAT:0330?query=Geostationary%20Ring%20IR10.8%20%CE%BCm%20Image%20-%20Multimission&s=advanced)
-- 3D cloud effect
 - Current ongoing auroras (NOAA, data available at : https://www.swpc.noaa.gov/products/aurora-30-minute-forecast)
 - Current sun surface (i.e. sunspots) (NASA, data available at : https://www.nasa.gov/mission_pages/sdo/the-sun-now/index.html)
 
@@ -21,6 +20,7 @@ WIP iOS application showing the Earth right now with clouds and other features. 
 - Sun glare effect
 - Monthly Earth textures (i.e. snow in Asia/America/Europe in Winter)
 - Realistic Earth rendering
+- Innovative 3D cloud effect
 - Realistic Moon rendering
 - Realistic Sun rendering
 - Realistic lighting effects (i.e. the moon casts light on earth and vice-versa)
