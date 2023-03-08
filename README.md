@@ -17,7 +17,6 @@ WIP iOS application showing the Earth right now with clouds and other features. 
 - Current sun position
 
 ### Graphical features
-- Sun glare effect
 - Monthly Earth textures (i.e. snow in Asia/America/Europe in Winter)
 - Realistic Earth rendering
 - Innovative 3D cloud effect
