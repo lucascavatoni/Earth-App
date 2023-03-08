@@ -8,30 +8,39 @@
 import SceneKit
 
 class EarthNode: SCNNode {
+    //init(lon: Float) {
     override init() {
         super.init()
         
-        //creating the surface node
+        // SURFACE
         let surfaceNode = SurfaceNode()
+        surfaceNode.renderingOrder = 0
         self.addChildNode(surfaceNode)
         
-        //creating the clouds node
-        let cloudsNode = CloudsNode(key: "eumetsat")
+        // CLOUDS
+        let cloudsNode = CloudsNode()
+        cloudsNode.renderingOrder = 1
         self.addChildNode(cloudsNode)
         
-        //Creating atmosphere
+        // INSIDE OF ATMOSPHERE
+        let atmosphereInside = AtmosNodeInside()
+        atmosphereInside.renderingOrder = 2
+        self.addChildNode(atmosphereInside)
+        
+        // ATMOSPHERE
         let atmosphere = AtmosNode()
+        atmosphere.renderingOrder = 3
         self.addChildNode(atmosphere)
         
-        //Adding AirGlow
-        //let airGlow = AirGlowNode()
-        //self.addChildNode(airGlow)
+        // AIRGLOW
+        let airGlow = AirGlowNode()
+        airGlow.renderingOrder = 4
+        self.addChildNode(airGlow)
 
-        //Adding Aurora Borealis
-        let auroraBorealis = AuroraNode()
-        self.addChildNode(auroraBorealis)
-
-
+        // AURORA
+        let aurora = AuroraNode()
+        aurora.renderingOrder = 5
+        self.addChildNode(aurora)
     }
 
     required init?(coder aDecoder: NSCoder) {

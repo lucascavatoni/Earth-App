@@ -13,14 +13,14 @@ class Time{
     var delta:Float = 0.0
     var lambda:Double = 0.0
     var moonLongitude:Float = 0.0
-    var moonDelta: Float = 0.0
-    var moonDistance: Float = 0.0
+    var moonDelta:Float = 0.0
+    var moonDistance:Float = 0.0
     
     init(){
         //Converting deg to radians
-        let toRadians:Double = Double.pi/180
+        let toRadians:Double = Double.pi/180.0
         //Converting radians to deg
-        let toDegrees:Double = 180/Double.pi
+        let toDegrees:Double = 180.0/Double.pi
         
         //Calendar
         var calendar = Calendar.current
@@ -28,31 +28,41 @@ class Time{
         
         //year
         let y:Int = Int(calendar.component(.year, from: Date()))
+        //print(y)
         //month
         let m:Int = Int(calendar.component(.month, from: Date()))
+        //print(m)
         //day
         let day:Int = Int(calendar.component(.day, from: Date()))
+        //print(day)
         //hour
         let h:Int = Int(calendar.component(.hour, from: Date()))
+        //print(h)
         //minutes
         let mins:Int = Int(calendar.component(.minute, from: Date()))
         //seconds
         let seconds:Int = Int(calendar.component(.second, from: Date()))
+        //print(seconds)
         
         //Computing Greenwich Hour Angle (GHA(longitude = 0) = Angle from the longitude of the sun on Earth to the Greenwich meridian)
         //Negative hour angles (-180 < LHA(0°) < 0) indicate the object is approaching the meridian, positive hour angles (0 < LHA(0°) < 180) indicate the object is moving away from the meridian; an hour angle of zero means the object is on the meridian.
         //So when the meridian
         //Computing J2000 day
         //Formulas from http://www2.arnes.si/~gljsentvid10/sidereal.htm
+        //Same formula for GMST here https://fr.wikipedia.org/wiki/Temps_sidéral
         //whole part
         //dwhole =367*y-INT(7*(y+INT((m+9)/12))/4)+INT(275*m/9)+day-730531.5
         //In swift : Int(1.5)/1 = Int(1.5/1) so we can remove the Int because our variables are already Int
         let dwhole:Double = Double(367*y - 7*(y+(m+9)/12)/4 + 275*m/9+day)-Double(730531.5)
+        //let dwholeInt:Double = Double(367*y - Int(7*(y+Int((m+9)/12))/4) + Int(275*m/9)+day)-Double(730531.5)
+        //print(dwhole)
+        //print(dwholeInt)
         //fractional part
         //dfrac = (h + mins/60 + seconds/3600)/24
-        let dfrac:Double = Double((Float(h)+Float(mins)/60+Float(seconds)/3600) / 24)
+        let dfrac:Double = (Double(h)+Double(mins)/60.0+Double(seconds)/3600.0) / 24.0
         //days since J2000
         var d:Double = dwhole + dfrac
+        //var d:Double = JD - 2451545.0
         //GMST
         //GMST = 280.46061837 + 360.98564736629 * d
         var GMST: Double = 280.46061837 + 360.98564736629 * d
@@ -66,20 +76,20 @@ class Time{
         var Ms:Double = 357.528 + 0.9856003*d
         Ms = Ms.truncatingRemainder(dividingBy: 360)
         //Ecliptic longitude of the sun
-        lambda = Ls + 1.915*sin(Ms*toRadians)+0.020*sin(2*Ms*toDegrees)
+        lambda = (Ls + 1.915*sin(Ms*toRadians)+0.020*sin(2*Ms*toRadians))*toRadians
         //Obliquity of the ecliptic
         //Linear approximation
         let epsilon: Double = 23.439-0.0000004*d
         //Sun right ascension at the right quadrant
-        var alpha: Double = toDegrees*atan2(cos(epsilon*toRadians)*sin(lambda*toRadians),cos(lambda*toRadians))
+        var alpha: Double = toDegrees*atan2(cos(epsilon*toRadians)*sin(lambda),cos(lambda))
         alpha = alpha.truncatingRemainder(dividingBy: 360)
         
         //Formula from https://en.wikipedia.org/wiki/Hour_angle
         //LONGITUDE
-        longitude = Float(GMST - alpha)
-        longitude = longitude.truncatingRemainder(dividingBy: 360)
+        longitude = Float((GMST - alpha).truncatingRemainder(dividingBy: 360)*toRadians)
+        //print(longitude)
         //Computing sun's DECLINATION
-        delta = Float(asin(sin(epsilon*toRadians)*sin(lambda*toRadians)))
+        delta = Float(asin(sin(epsilon*toRadians)*sin(lambda)))
         
         //print(delta*180.0/Float.pi)
         //print(longitude)
@@ -174,16 +184,29 @@ class Time{
         let ye = yg * cos(epsilon*toRadians) - zg * sin(epsilon*toRadians)
         let ze = yg * sin(epsilon*toRadians) + zg * cos(epsilon*toRadians)
         //right scension
-        var moonRA = atan2(ye, xe)
+        var moonRA: Double = atan2(ye, xe)
         moonRA = moonRA*toDegrees
         // declination
         var moonDeltaDouble = atan(ze / sqrt(xe * xe + ye * ye))
         moonDeltaDouble = moonDeltaDouble*toDegrees
         // geocentric distance
-        moonDelta = Float(moonDeltaDouble)
-        moonLongitude = Float(moonRA-alpha)
-        moonLongitude = moonLongitude.truncatingRemainder(dividingBy: 360)
-        moonLongitude = range(x: moonLongitude)
+        moonDelta = Float(moonDeltaDouble*toRadians)
+        moonLongitude = Float(range(x: (moonRA-alpha).truncatingRemainder(dividingBy: 360)) * toRadians)
+        
+        //TEST
+        
+        print("moon distance =", moonDistance)
+        
+        print("sun declination (deg) =", delta*180/Float.pi)
+        
+        print("sun longitude (deg) =", -longitude*180/Float.pi)
+        
+        print("moon declination (deg) =", moonDelta*180/Float.pi)
+        
+        print("moon longitude (deg) =", moonLongitude*180/Float.pi-longitude*180/Float.pi)
+        //let test = -10.0
+        //print(test.truncatingRemainder(dividingBy: 360))
+        //moonLongitude = range(x: moonLongitude)
         
     }
    
@@ -196,7 +219,7 @@ class Time{
     }
     
     /**
-    Returns the LHA of the sun in deg
+    Returns the LHA of the sun in rad
      */
     func getLongitude() -> Float{
         return longitude
@@ -210,21 +233,21 @@ class Time{
     }
     
     /**
-    returns the ecliptic longitude of the sun in deg
+    returns the ecliptic longitude of the sun in rad
      */
     func getLambda() -> Float{
         return Float(lambda)
     }
     
     /**
-    returns the LHA of the moon in deg
+    returns the LHA of the moon in rad
      */
     func getMoonLongitude() -> Float{
         return moonLongitude
     }
     
     /**
-    returns the declination of the moon in deg
+    returns the declination of the moon in rad
      */
     func getMoonDelta() -> Float{
         return moonDelta

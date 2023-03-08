@@ -7,9 +7,8 @@
 
 import SceneKit
 
-let AtmosphereRadius: Float = 1.01
 
-class AtmosNode: SCNNode {
+class AtmosNodeInside: SCNNode {
     override init() {
         super.init()
         
@@ -20,8 +19,8 @@ class AtmosNode: SCNNode {
         sphere.segmentCount = segments
         self.geometry = sphere
         
-        self.geometry?.firstMaterial?.shaderModifiers = [.surface: atmosphereSurfaceShader]
-        //self.geometry?.firstMaterial?.diffuse.contents = UIColor(red: 0.3, green: 0.6, blue: 1.00, alpha: 0.5)
+        self.geometry?.firstMaterial?.cullMode = .front
+        self.geometry?.firstMaterial?.diffuse.contents = UIColor(red: 1.0, green: 0.6, blue: 0.4, alpha: 0.5)
         
     }
     

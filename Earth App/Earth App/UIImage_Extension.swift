@@ -10,6 +10,7 @@ import UIKit
 
 extension UIImage {
 
+    //might be total shit
     @discardableResult func replace(color: UIColor, withColor replacingColor: UIColor) -> UIImage {
         let inputCGImage = self.cgImage
         let colorSpace       = CGColorSpaceCreateDeviceRGB()
@@ -292,7 +293,7 @@ extension UIImage {
                 //let luminance = (red + green + blue)/3
                 if luminance < threshold {
                     pixelBuffer?[offset] = Clear
-                } 
+                }
             }
         }
   
@@ -301,8 +302,107 @@ extension UIImage {
 
         return UIImage(cgImage: outputCGImage, scale: self.scale, orientation: self.imageOrientation)
     }
+
+    //found on https://levelup.gitconnected.com/changing-and-replacing-colors-in-images-using-swift-d338ba79bd04
+    /**
+     Replaces a color in the image with a different color.
+     - Parameter color: color to be replaced.
+     - Parameter with: the new color to be used.
+     - Parameter tolerance: tolerance, between 0 and 1. 0 won't change any colors,
+                            1 will change all of them. 0.5 is default.
+     - Returns: image with the replaced color.
+     */
+    func replaceColor(_ color: UIColor, with: UIColor) -> UIImage {
+            guard let imageRef = self.cgImage else {
+                return self
+            }
+            // Get color components from replacement color
+            let withColorComponents = with.cgColor.components
+            let newRed = UInt8(withColorComponents![0] * 255)
+            //let newGreen = UInt8(withColorComponents![1] * 255)
+            //let newBlue = UInt8(withColorComponents![2] * 255)
+            //let newAlpha = UInt8(withColorComponents![3] * 255)
+
+            let width = imageRef.width
+            let height = imageRef.height
+            
+            let bytesPerPixel = 4
+            let bytesPerRow = bytesPerPixel * width
+            let bitmapByteCount = bytesPerRow * height
+            
+            let rawData = UnsafeMutablePointer<UInt8>.allocate(capacity: bitmapByteCount)
+            defer {
+                rawData.deallocate()
+            }
+            
+        guard let colorSpace = CGColorSpace(name: CGColorSpace.sRGB) else {
+                return self
+            }
+            
+            guard let context = CGContext(
+                data: rawData,
+                width: width,
+                height: height,
+                bitsPerComponent: 8,
+                bytesPerRow: bytesPerRow,
+                space: colorSpace,
+                bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+                    | CGBitmapInfo.byteOrder32Big.rawValue
+            ) else {
+                return self
+            }
+            
+            let rc = CGRect(x: 0, y: 0, width: width, height: height)
+            // Draw source image on created context.
+            context.draw(imageRef, in: rc)
+            var byteIndex = 0
+            // Iterate through pixels
+            while byteIndex < bitmapByteCount {
+                // Get color of current pixel
+                let red = CGFloat(rawData[byteIndex + 0]) / 255
+                //let green = CGFloat(rawData[byteIndex + 1]) / 255
+                //let blue = CGFloat(rawData[byteIndex + 2]) / 255
+                //let alpha = CGFloat(rawData[byteIndex + 3]) / 255
+                let currentColor = UIColor(red: red, green: 0.0, blue: 0.0, alpha: 1.0)
+                // Replace pixel if the color is close enough to the color being replaced.
+                if compareColor(firstColor: color, secondColor: currentColor) {
+                    rawData[byteIndex + 0] = newRed
+                    rawData[byteIndex + 1] = newRed
+                    rawData[byteIndex + 2] = newRed
+                    //rawData[byteIndex + 3] = newAlpha
+                }
+                byteIndex += 4
+            }
+            
+            // Retrieve image from memory context.
+            guard let image = context.makeImage() else {
+                return self
+            }
+            let result = UIImage(cgImage: image)
+            return result
+        }
     
-    
+    /**
+         Check if two colors are the same (or close enough given the tolerance).
+         - Parameter firstColor: first color used in the comparisson.
+         - Parameter secondColor: second color used in the comparisson.
+         - Parameter tolerance: how much variation can there be for the function to return true.
+                                0 is less sensitive (will always return false),
+                                1 is more sensitive (will always return true).
+         */
+    private func compareColor(
+        firstColor: UIColor,
+        secondColor: UIColor
+    ) -> Bool {
+        var r1: CGFloat = 0.0, g1: CGFloat = 0.0, b1: CGFloat = 0.0, a1: CGFloat = 0.0;
+        var r2: CGFloat = 0.0, g2: CGFloat = 0.0, b2: CGFloat = 0.0, a2: CGFloat = 0.0;
+
+        firstColor.getRed(&r1, green: &g1, blue: &b1, alpha: &a1)
+        secondColor.getRed(&r2, green: &g2, blue: &b2, alpha: &a2)
+        
+        return r1 == r2
+    }
+        
     
     func convert(ciImage:CIImage) -> UIImage?
       {
@@ -314,12 +414,29 @@ extension UIImage {
         return nil
       }
     
-    func invert() -> UIImage{
+    func modifyContrastAndInvert(value: NSNumber, context: CIContext) -> UIImage{
         let CIimage = CIImage(image: self)!
-        let filter = CIFilter(name: "CIColorInvert")
-        filter?.setValue(CIimage, forKey: kCIInputImageKey)
-        
-        return convert(ciImage: (filter?.outputImage)!)!
+        let parameters = ["inputContrast": value]
+        let outputImage1 = CIimage.applyingFilter("CIColorControls", parameters: parameters)
+        let outputImage2 = outputImage1.applyingFilter("CIColorInvert")
+        let CGimage = context.createCGImage(outputImage2, from: outputImage2.extent)!
+        return UIImage(cgImage: CGimage)
+    }
+    
+    func invert(context: CIContext) -> UIImage{
+        let CIimage = CIImage(image: self)!
+        let outputImage = CIimage.applyingFilter("CIColorInvert")
+        let CGimage = context.createCGImage(outputImage, from: outputImage.extent)!
+        return UIImage(cgImage: CGimage)
+    }
+    
+    func makeNormal(context: CIContext) -> UIImage{
+        let CIimage = CIImage(image: self)!
+        let filter = NormalMapFilter()
+        filter.inputImage = CIimage
+        let outputImage = filter.outputImage!
+        let CGimage = context.createCGImage(outputImage, from: outputImage.extent)!
+        return UIImage(cgImage: CGimage)
     }
     
     func withSaturationAdjustment(byVal: CGFloat) -> UIImage {
@@ -740,3 +857,4 @@ struct RGBA32: Equatable {
     
 
 }
+
