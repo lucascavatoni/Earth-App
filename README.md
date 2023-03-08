@@ -32,7 +32,7 @@ The goal is to have a representation of the earth as visually accurate as possib
 - Ability to tap on the sun or the moon to go towards it
 
 <p float="left">
-  <img src="https://i.imgur.com/JbweKXu.png" width=30% height=30% title="Image description">
+  <img src="https://i.imgur.com/JbweKXu.png" width=30% height=30% title="Image description" />
   <img src="https://i.imgur.com/RKSQ6lP.png" width=30% height=30%>
   <img src="https://i.imgur.com/zbpHLbL.png" width=30% height=30%>
   <img src="https://i.imgur.com/VHtroDt.png" width=30% height=30%>
