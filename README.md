@@ -6,24 +6,28 @@ Tested on iPhone SE 3.
 
 The goal is to have a representation of the earth as visually accurate as possible, and then adding UI features and possibly weather forecast...
 
-### The app features :
+## The app features :
 
-- Monthly earth textures (i.e. snow in Asia/America/Europe in Winter)
-- Earth normals
-- Night lights (Colored from black and white images from black marble)
-- Atmosphere shader 
-- Terminator shader
-- Earth surface shader
-- Current moon position (including distance from earth)
-- Moon normals
-- The moon casts light on earth and vice-versa
-- Current sun position
+### Internet based features
 - Current IR clouds covering the entierety of earth, with post-processing to make them look more like visible imagery (EUMETSAT, data available at : https://navigator.eumetsat.int/product/EO:EUM:DAT:0330?query=Geostationary%20Ring%20IR10.8%20%CE%BCm%20Image%20-%20Multimission&s=advanced)
 - 3D cloud effect
 - Current ongoing auroras (NOAA, data available at : https://www.swpc.noaa.gov/products/aurora-30-minute-forecast)
 - Current sun surface (i.e. sunspots) (NASA, data available at : https://www.nasa.gov/mission_pages/sdo/the-sun-now/index.html)
-- Sun glare effect
+
+### Orbital mechanics features
 - Current stars and milkyway
+- Current moon position (including distance from earth)
+- Current sun position
+
+### Graphical features
+- Sun glare effect
+- Monthly Earth textures (i.e. snow in Asia/America/Europe in Winter)
+- Realistic Earth rendering
+- Realistic Moon rendering
+- Realistic Sun rendering
+- Realistic lighting effects (i.e. the moon casts light on earth and vice-versa)
+
+### User experience features
 - Custom zoom and pan camera controls
 - Ability to tap on the sun or the moon to go towards it
 
