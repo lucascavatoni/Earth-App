@@ -27,15 +27,15 @@ The app features :
 - Custom zoom and pan camera controls
 - Ability to tap on the sun or the moon to go towards it
 
-<img src="https://i.imgur.com/JbweKXu.png" width=50% height=50%>
+<img src="https://i.imgur.com/JbweKXu.png" width=30% height=30%>
 
-<img src="https://i.imgur.com/RKSQ6lP.png" width=50% height=50%>
+<img src="https://i.imgur.com/RKSQ6lP.png" width=30% height=30%>
 
-<img src="https://i.imgur.com/zbpHLbL.png" width=50% height=50%>
+<img src="https://i.imgur.com/zbpHLbL.png" width=30% height=30%>
 
-<img src="https://i.imgur.com/VHtroDt.png" width=50% height=50%>
+<img src="https://i.imgur.com/VHtroDt.png" width=30% height=30%>
 
-<img src="https://i.imgur.com/YQ2fWhw.png" width=50% height=50%>
+<img src="https://i.imgur.com/YQ2fWhw.png" width=30% height=30%>
 
 ![image]()
 
