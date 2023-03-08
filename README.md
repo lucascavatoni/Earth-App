@@ -37,4 +37,5 @@ The goal is to have a representation of the earth as visually accurate as possib
   <img src="https://i.imgur.com/zbpHLbL.png" width=30% height=30%>
   <img src="https://i.imgur.com/VHtroDt.png" width=30% height=30%>
   <img src="https://i.imgur.com/YQ2fWhw.png" width=30% height=30%>
+  <img src="https://i.imgur.com/HoibaIr.png" width=30% height=30%>
 </p>
