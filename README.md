@@ -37,4 +37,7 @@ Work in progress iOS application showing the Earth right now with clouds and oth
   <img src="https://i.imgur.com/VHtroDt.png" width=30% height=30%>
   <img src="https://i.imgur.com/YQ2fWhw.png" width=30% height=30%>
   <img src="https://i.imgur.com/HoibaIr.png" width=30% height=30%>
+  <img src="https://i.imgur.com/Jhqi0cu.png" width=30% height=30%>
+  <img src="https://i.imgur.com/i6W8Gdl.png" width=30% height=30%>
+  <img src="https://i.imgur.com/4vJ23bu.png" width=30% height=30%>
 </p>
